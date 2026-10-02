@@ -10,6 +10,13 @@ def _clone(value: object) -> object:
     return value
 
 
+def apply_merge_patches(document: object, *patches: object) -> object:
+    current = document
+    for patch in patches:
+        current = apply_merge_patch(current, patch)
+    return current
+
+
 def apply_merge_patch(document: object, patch: object) -> object:
     if not isinstance(patch, dict):
         return _clone(patch)
