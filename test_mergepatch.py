@@ -1,6 +1,6 @@
 import unittest
 
-from mergepatch import apply_merge_patch
+from mergepatch import apply_merge_patch, apply_merge_patches
 
 
 class MergePatchTest(unittest.TestCase):
@@ -15,6 +15,10 @@ class MergePatchTest(unittest.TestCase):
         out["a"]["b"] = 9
         out["c"].append(2)
         self.assertEqual(doc, {"a": {"b": 1}, "c": [1]})
+
+    def test_apply_several(self) -> None:
+        got = apply_merge_patches({"a": 1, "b": 2}, {"a": 3}, {"b": None})
+        self.assertEqual(got, {"a": 3})
 
     def test_replace_non_object(self) -> None:
         self.assertEqual(apply_merge_patch({"a": 1}, ["x"]), ["x"])
