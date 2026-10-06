@@ -10,6 +10,13 @@ def _clone(value: object) -> object:
     return value
 
 
+def added_keys(document: object, patch: object) -> list[str]:
+    if not isinstance(patch, dict):
+        return []
+    base = document if isinstance(document, dict) else {}
+    return [key for key, value in patch.items() if value is not None and key not in base]
+
+
 def removed_keys(patch: object) -> list[str]:
     if not isinstance(patch, dict):
         return []
