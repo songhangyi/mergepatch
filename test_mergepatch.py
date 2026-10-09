@@ -1,6 +1,6 @@
 import unittest
 
-from mergepatch import added_keys, apply_merge_patch, apply_merge_patches, removed_keys
+from mergepatch import added_keys, apply_merge_patch, apply_merge_patches, patch_size, removed_keys
 
 
 class MergePatchTest(unittest.TestCase):
@@ -21,6 +21,8 @@ class MergePatchTest(unittest.TestCase):
         self.assertEqual(got, {"a": 3})
         self.assertEqual(removed_keys({"a": 3, "b": None}), ["b"])
         self.assertEqual(added_keys({"a": 1}, {"b": 2, "a": 3, "c": None}), ["b"])
+        self.assertEqual(patch_size({"b": 2, "c": None}), 2)
+        self.assertEqual(patch_size(["x"]), 0)
 
     def test_replace_non_object(self) -> None:
         self.assertEqual(apply_merge_patch({"a": 1}, ["x"]), ["x"])
