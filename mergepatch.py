@@ -17,6 +17,12 @@ def added_keys(document: object, patch: object) -> list[str]:
     return [key for key, value in patch.items() if value is not None and key not in base]
 
 
+def patch_size(patch: object) -> int:
+    if not isinstance(patch, dict):
+        return 0
+    return len(patch)
+
+
 def removed_keys(patch: object) -> list[str]:
     if not isinstance(patch, dict):
         return []
