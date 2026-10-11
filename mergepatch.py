@@ -23,6 +23,10 @@ def patch_size(patch: object) -> int:
     return len(patch)
 
 
+def is_empty(patch: object) -> bool:
+    return patch_size(patch) == 0
+
+
 def removed_keys(patch: object) -> list[str]:
     if not isinstance(patch, dict):
         return []
