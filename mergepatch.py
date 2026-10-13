@@ -27,6 +27,12 @@ def is_empty(patch: object) -> bool:
     return patch_size(patch) == 0
 
 
+def kept_keys(patch: object) -> list[str]:
+    if not isinstance(patch, dict):
+        return []
+    return [key for key, value in patch.items() if value is not None]
+
+
 def removed_keys(patch: object) -> list[str]:
     if not isinstance(patch, dict):
         return []
