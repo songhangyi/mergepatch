@@ -39,6 +39,10 @@ def removed_keys(patch: object) -> list[str]:
     return [key for key, value in patch.items() if value is None]
 
 
+def removed_count(patch: object) -> int:
+    return len(removed_keys(patch))
+
+
 def apply_merge_patches(document: object, *patches: object) -> object:
     current = document
     for patch in patches:
