@@ -43,6 +43,10 @@ def removed_count(patch: object) -> int:
     return len(removed_keys(patch))
 
 
+def kept_count(patch: object) -> int:
+    return len(kept_keys(patch))
+
+
 def apply_merge_patches(document: object, *patches: object) -> object:
     current = document
     for patch in patches:
