@@ -5,7 +5,7 @@ Apply a JSON Merge Patch (RFC 7396).
 A JSON `null` removes a key. Nested objects merge. Arrays and scalars replace the target. Untouched nested values are copied, so later edits to the result do not change the input.
 
 ```python
-from mergepatch import apply_merge_patch, apply_merge_patches, removed_keys, added_keys, patch_size, is_empty, kept_keys, removed_count, kept_count, added_count
+from mergepatch import apply_merge_patch, apply_merge_patches, removed_keys, added_keys, patch_size, is_empty, kept_keys, removed_count, kept_count, added_count, replaced_count
 
 apply_merge_patch({"a": "b", "c": {"d": "e"}}, {"a": "z", "c": {"d": None}})
 # {"a": "z", "c": {}}
