@@ -51,6 +51,13 @@ def added_count(document: object, patch: object) -> int:
     return len(added_keys(document, patch))
 
 
+def replaced_count(document: object, patch: object) -> int:
+    if not isinstance(patch, dict):
+        return 0
+    base = document if isinstance(document, dict) else {}
+    return sum(1 for key, value in patch.items() if value is not None and key in base)
+
+
 def apply_merge_patches(document: object, *patches: object) -> object:
     current = document
     for patch in patches:
