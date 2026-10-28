@@ -1,6 +1,6 @@
 import unittest
 
-from mergepatch import added_count, added_keys, apply_merge_patch, apply_merge_patches, is_empty, kept_count, kept_keys, patch_size, removed_count, removed_keys, replaced_count
+from mergepatch import added_count, added_keys, apply_merge_patch, apply_merge_patches, is_empty, kept_count, kept_keys, patch_size, removed_count, removed_keys, replaced_count, removes_any
 
 
 class MergePatchTest(unittest.TestCase):
@@ -35,6 +35,9 @@ class MergePatchTest(unittest.TestCase):
         self.assertEqual(apply_merge_patch({"a": 1}, ["x"]), ["x"])
         self.assertEqual(apply_merge_patch(["x"], {"a": 1}), {"a": 1})
 
+
+        self.assertTrue(removes_any({"a": None}))
+        self.assertFalse(removes_any({"a": 1}))
 
 if __name__ == "__main__":
     unittest.main()
