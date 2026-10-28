@@ -79,3 +79,6 @@ def apply_merge_patch(document: object, patch: object) -> object:
             continue
         merged[key] = _clone(value)
     return merged
+
+def removes_any(patch: object) -> bool:
+    return removed_count(patch) > 0
