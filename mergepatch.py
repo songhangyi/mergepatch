@@ -82,3 +82,6 @@ def apply_merge_patch(document: object, patch: object) -> object:
 
 def removes_any(patch: object) -> bool:
     return removed_count(patch) > 0
+
+def touches(document: object, patch: object) -> bool:
+    return added_count(document, patch) + replaced_count(document, patch) > 0
